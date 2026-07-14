@@ -7,7 +7,7 @@ AltanAI is a native, native-compiled Classic Mac OS 9 coding co-pilot and IDE. I
 ## Visual Tour
 
 ### 1. Main Chat Interface
-An Generic IM-style chat interface displaying server response logs.
+A Generic IM-style chat interface displaying server response logs.
 ![Main Chat Interface](screenshot/Screenshot%202026-07-14%20at%2020.33.23.jpg)
 
 ### 2. File Menu Commands
