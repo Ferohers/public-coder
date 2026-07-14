@@ -133,7 +133,7 @@ Because Classic Mac OS uses **cooperative multitasking**, a single blocking netw
 
 ## WTH is AltanAI?
 
-It all started as a nameless, late-night experiment. I was just goofing around, sending simple commands to a local AI to see if it could do anything useful. Then I fed it a small snippet of broken code, and *boom*—it fixed it. That sparked the dangerous thought: *Why not make it better?*
+It all started as a nameless, late-night experiment. I was just goofing around, sending simple commands to a local AI to see if it could do anything useful on MacOS 9. Then I fed it a small snippet of broken code, and *boom*—it fixed it. That sparked the dangerous thought: *Why not make it better?*
 
 Naturally, that was immediately followed by hitting a brick wall of massive technical limitations. *"But hey, there are hella lots of advanced AIs out there to help me build this!"* I told myself. Well, I said a lot of optimistic things back then, and this project was happy to prove me wrong at almost every turn.
 
