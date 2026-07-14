@@ -45,7 +45,6 @@ add_application({app_name}
 
 target_link_libraries({app_name}
     InterfaceLib
-    AppearanceLib
     retrocrt
 )
 """,
@@ -60,12 +59,8 @@ target_link_libraries({app_name}
 #include <Dialogs.h>
 #include <Events.h>
 #include <Menus.h>
-#include <Controls.h>
-#include <ControlDefinitions.h>
-#include <Appearance.h>
 #include <ToolUtils.h>
 
-static ControlHandle gButton = NULL;
 static short gClicks = 0;
 
 static void DrawMainWindow(WindowPtr window) {{
@@ -76,40 +71,34 @@ static void DrawMainWindow(WindowPtr window) {{
     EraseRect(&content);
     MoveTo(24, 64);
     if (gClicks == 0) {{
-        DrawString("\\pHello World");
+        DrawString("\\pHello World (Click window to change text)");
     }} else {{
         DrawString("\\pHahaha");
     }}
-    if (gButton) Draw1Control(gButton);
 }}
 
 int main(void) {{
     Rect bounds;
-    Rect buttonRect;
     Rect dirtyRect;
     WindowPtr window;
     WindowPtr whichWindow;
     EventRecord event;
-    Point localPoint;
-    ControlHandle control;
     short part;
-    short controlPart;
 
     MaxApplZone();
+#if !TARGET_API_MAC_CARBON
     InitGraf(&qd.thePort);
     InitFonts();
     InitWindows();
     InitMenus();
     TEInit();
     InitDialogs(NULL);
+#endif
     InitCursor();
 
     SetRect(&bounds, 80, 80, 260, 420);
     window = NewCWindow(NULL, &bounds, "\\p{app_name}", true, documentProc,
         (WindowPtr)-1L, true, 0L);
-    SetRect(&buttonRect, 24, 92, 124, 114);
-    gButton = NewControl(window, &buttonRect, "\\pSay Hello", true,
-        0, 0, 0, kControlBevelButtonNormalBevelProc, 0L);
 
     while (1) {{
         if (WaitNextEvent(everyEvent, &event, 30, NULL)) {{
@@ -120,16 +109,9 @@ int main(void) {{
                 }} else if (part == inContent && whichWindow == window) {{
                     SelectWindow(window);
                     SetPort(window);
-                    localPoint = event.where;
-                    GlobalToLocal(&localPoint);
-                    controlPart = FindControl(localPoint, window, &control);
-                    if (controlPart && control == gButton) {{
-                        if (TrackControl(gButton, localPoint, NULL)) {{
-                            gClicks++;
-                            SetRect(&dirtyRect, 0, 0, 340, 180);
-                            InvalRect(&dirtyRect);
-                        }}
-                    }}
+                    gClicks++;
+                    SetRect(&dirtyRect, 0, 0, 340, 180);
+                    InvalRect(&dirtyRect);
                 }}
             }} else if (event.what == updateEvt) {{
                 BeginUpdate((WindowPtr)event.message);
