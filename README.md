@@ -96,9 +96,6 @@ Because Classic Mac OS uses **cooperative multitasking**, a single blocking netw
 
 ## Visual Tour
 
-### 1. Main Chat Interface
-An ICQ-style chat interface displaying server response logs.
-![Main Chat Interface](screenshot/Screenshot%202026-07-14%20at%2017.42.00.jpg)
 
 ### 2. File Menu Commands
 A Classic drop-down menu managing connection settings, remote compile triggers, project builders, and direct shortcuts to apply/reject AI code changes.
