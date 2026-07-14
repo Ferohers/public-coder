@@ -98,12 +98,11 @@ Because Classic Mac OS uses **cooperative multitasking**, a single blocking netw
 
 ### 1. Main Chat Interface
 An ICQ-style chat interface displaying server response logs.
-![File Menu Commands](screenshot/Screenshot%202026-07-14%20at%2020.40.50.jpg)
-
+![Main Chat Interface](screenshot/Screenshot%202026-07-14%20at%2017.42.00.jpg)
 
 ### 2. File Menu Commands
 A Classic drop-down menu managing connection settings, remote compile triggers, project builders, and direct shortcuts to apply/reject AI code changes.
-![Main Chat Interface](screenshot/Screenshot%202026-07-14%20at%2017.42.00.jpg)
+![File Menu Commands](screenshot/Screenshot%202026-07-14%20at%2020.40.50.jpg)
 
 ### 3. Local File Manager
 Scans local virtual disk folders and tracks files using the Macintosh File Manager.
@@ -127,4 +126,6 @@ Watch cursor loading indicators and event blocks.
 Green checkmark (✓) prompt change verification indicators.
 ![AI Code Application](screenshot/Screenshot%202026-07-14%20at%2020.33.23.jpg)
 
+### 8. Prank Application Compiled
 
+![Prank App Output](screenshot/Screenshot%202026-07-14%20at%2020.34.55.jpg)
