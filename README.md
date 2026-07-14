@@ -4,6 +4,41 @@ AltanAI is a native, native-compiled Classic Mac OS 9 coding co-pilot and IDE. I
 
 ---
 
+## Visual Tour
+
+### 1. Main Chat Interface
+An ICQ-style chat interface displaying server response logs.
+![Main Chat Interface](screenshot/Screenshot%202026-07-14%20at%2020.33.23.jpg)
+
+### 2. File Menu Commands
+A Classic drop-down menu managing connection settings, remote compile triggers, project builders, and direct shortcuts to apply/reject AI code changes.
+![File Menu Commands](screenshot/Screenshot%202026-07-14%20at%2020.40.50.jpg)
+
+### 3. Local File Manager
+Scans local virtual disk folders and tracks files using the Macintosh File Manager.
+![Local File Manager](screenshot/Screenshot%202026-07-14%20at%2020.27.19.jpg)
+![File List](screenshot/Screenshot%202026-07-14%20at%2020.30.34.jpg)
+
+### 4. Text Editor Tab Views
+Multi-tab text editor with line numbers, search tools, and dirty flags.
+![Text Editor (Original Code)](screenshot/Screenshot%202026-07-14%20at%2020.27.57.jpg)
+![Text Editor (Applied Changes)](screenshot/Screenshot%202026-07-14%20at%2020.32.02.jpg)
+
+### 5. Dialog Panels
+Modal settings, history managers, and product details panels.
+![Settings Dialog](screenshot/Screenshot%202026-07-14%20at%2020.34.55.jpg)
+
+### 6. Busy State event blocking
+Watch cursor loading indicators and event blocks.
+![Busy State Indicator](screenshot/Screenshot%202026-07-14%20at%2020.27.57.jpg)
+
+### 7. Interactive AI Code Application
+Green checkmark (✓) prompt change verification indicators.
+![AI Code Application (Pending)](screenshot/Screenshot%202026-07-14%20at%2020.31.39.jpg)
+![AI Code Application (Applied)](screenshot/Screenshot%202026-07-14%20at%2020.32.02.jpg)
+
+---
+
 ## Architecture and System Flow
 
 The project is split into two primary components:
@@ -80,9 +115,11 @@ Because Classic Mac OS uses **cooperative multitasking**, a single blocking netw
 3. Mount the generated `AltanAI.dsk` image inside your emulator (e.g., SheepShaver).
 
 ### B. Launching the Docker Bridge
-1. Copy `docker/.env.example` to `docker/.env` and add your LLM API Key:
+1. Copy `docker/.env.example` to `docker/.env` and add your LLM details. AltanAI supports **OpenAI** and any **OpenAI-compatible API** (such as Groq, Ollama, or LM Studio) by configuring the completions URL, key, and model name in `.env`:
    ```text
-   PROVIDER_API_KEY=your_key_here
+   PROVIDER_API_KEY=your_api_key_here
+   CHAT_COMPLETIONS_URL=https://api.openai.com/v1/chat/completions
+   MODEL=gpt-4o
    MAX_COMPLETION_TOKENS=4096
    ```
 2. Start the service:
@@ -94,36 +131,24 @@ Because Classic Mac OS uses **cooperative multitasking**, a single blocking netw
 
 ---
 
-## Visual Tour
+## WTH is AltanAI?
 
-### 1. Main Chat Interface
-An ICQ-style chat interface displaying server response logs.
-![Prank App Output](screenshot/Screenshot%202026-07-14%20at%2020.34.55.jpg)
+It all started as a nameless, late-night experiment. I was just goofing around, sending simple commands to a local AI to see if it could do anything useful. Then I fed it a small snippet of broken code, and *boom*—it fixed it. That sparked the dangerous thought: *Why not make it better?*
 
-### 2. File Menu Commands
-A Classic drop-down menu managing connection settings, remote compile triggers, project builders, and direct shortcuts to apply/reject AI code changes.
-![File Menu Commands](screenshot/Screenshot%202026-07-14%20at%2020.40.50.jpg)
+Naturally, that was immediately followed by hitting a brick wall of massive technical limitations. *"But hey, there are hella lots of advanced AIs out there to help me build this!"* I told myself. Well, I said a lot of optimistic things back then, and this project was happy to prove me wrong at almost every turn.
 
-### 3. Local File Manager
-Scans local virtual disk folders and tracks files using the Macintosh File Manager.
-![Local File Manager](screenshot/Screenshot%202026-07-14%20at%2020.27.19.jpg)
-![File List](screenshot/Screenshot%202026-07-14%20at%2020.27.23.jpg)
+Yet, somehow, it actually works! AltanAI handles a ton of basic tasks. It's still rough around the edges and needs polishing (mostly because I had to make fundamental design decisions with very limited legacy Mac OS knowledge), but the workflow is beautiful: instead of waiting a painful **6 minutes** to compile a build locally in an emulator, it ships it to a remote compiler in **5 seconds** and returns a shiny, compiled `.dsk` disk image with a single click.
 
-### 4. Text Editor Tab Views
-Multi-tab text editor with line numbers, search tools, and dirty flags.
-![Text Editor Empty](screenshot/Screenshot%202026-07-14%20at%2020.27.57.jpg)
-![Text Editor Editing](screenshot/Screenshot%202026-07-14%20at%2020.30.34.jpg)
+If you're planning to build larger things here, keep one major rule in mind: **do not let your code files overgrow.** Classic Mac OS 9 is ruthlessly strict. I tried developing custom workarounds for its quirks, but the system kept freezing. In the end, I decided to keep things **Simple, Stupid (KISS)** rather than relying on legacy black magic from an ancient era that god-only-knows if they ever truly worked.
 
-### 5. Dialog Panels
-Modal settings, history managers, and product details panels.
-![Dialog Panels](screenshot/Screenshot%202026-07-14%20at%2020.31.39.jpg)
+Oh, and why "AltanAI"? Because in the early days of development, every single query to the model began with: *"My name is Altan."* Later, I'd ask it, *"What is my name?"* Keeping that basic memory block alive without crashing the entire system was my very first major challenge. It only felt right to name it after the guy it kept forgetting!
 
-### 6. Busy State event blocking
-Watch cursor loading indicators and event blocks.
-![Busy State indicator](screenshot/Screenshot%202026-07-14%20at%2020.32.02.jpg)
+---
 
-### 7. Interactive AI Code Application
-Green checkmark (✓) prompt change verification indicators.
-![AI Code Application](screenshot/Screenshot%202026-07-14%20at%2020.33.23.jpg)
+## License
+
+This project is open-source and licensed under the [GNU General Public License v3 (GPL-3.0)](file:///Users/altan/Documents/public-coder/LICENSE). All contributions, modifications, and derivative work delivered from this repository must also be open source under the same license terms.
+
+
 
 
