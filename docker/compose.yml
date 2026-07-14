@@ -1,0 +1,16 @@
+services:
+  mac9_ai_bridge:
+    build:
+      context: .
+    container_name: mac9_ai_bridge
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    environment:
+      - WORKSPACE=/app/workspace
+    volumes:
+      - ./workspace:/app/workspace
+      - ./os9docs-master:/app/os9docs-master:ro
+    restart: unless-stopped

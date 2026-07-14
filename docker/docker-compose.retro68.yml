@@ -1,0 +1,25 @@
+services:
+  mac9_ai_bridge:
+    build:
+      context: .
+    container_name: mac9_ai_bridge
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    environment:
+      - WORKSPACE=/app/workspace
+      - RETRO68_ROOT=/opt/retro68/toolchain
+      - BUILD_COMMAND=/app/build_macos9.sh
+      - BUILD_OUTPUT=
+    volumes:
+      - ./workspace:/app/workspace
+      - ./os9docs-master:/app/os9docs-master:ro
+      - type: bind
+        source: ${RETRO68_HOST_ROOT:-/opt/retro68/toolchain}
+        target: /opt/retro68/toolchain
+        read_only: true
+        bind:
+          create_host_path: false
+    restart: unless-stopped

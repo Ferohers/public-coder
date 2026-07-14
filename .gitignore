@@ -1,0 +1,27 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Retro68 and CMake build outputs
+build/
+build_ppc/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.o
+*.obj
+*.xcoff
+*.pef
+*.bin
+*.APPL
+*.dsk
+*.ad
+%*
+
+# Local configuration and logs
+.env
+*.log
+*.bak
+*.tmp
+temp_rsrc/
