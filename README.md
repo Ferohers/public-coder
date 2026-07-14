@@ -101,6 +101,19 @@ Because Classic Mac OS uses **cooperative multitasking**, a single blocking netw
 
 ---
 
+## Why Use a Starter Project?
+
+Starting a brand new software project from scratch can be a daunting process, particularly when target environments involve legacy operating systems, specialized cross-compilers, or non-trivial host-client communication bridges. 
+
+To solve this, AltanAI provides a built-in starter project generator via [scaffold_macos9_project.py](file:///Users/altan/Documents/public-coder/docker/scaffold_macos9_project.py). Here is why utilizing a starter project or template is critical:
+
+* **Eliminating Initial Setup Friction:** Instead of spending hours or days configuring compiler flags, configuring Retro68 toolchains, writing [CMakeLists.txt](file:///Users/altan/Documents/public-coder/macos9_client/CMakeLists.txt) templates, or setting up [compose.yml](file:///Users/altan/Documents/public-coder/docker/compose.yml), a starter project lets you boot up a fully functional project instantly.
+* **Providing a Proven Architecture:** Legacy systems like Classic Mac OS have severe constraints (such as the 32KB TextEdit buffer size and cooperative multitasking loop). A starter project sets up a boilerplate project structure—pre-configured size resources, event loop templates, and multi-file division schemes—that prevents standard heap corruptions or freezes out-of-the-box.
+* **Environment Sanity Check:** It acts as a baseline verification tool. If the simple starter template compiles, packages, and runs on the emulator, you know that your local cross-compiler toolchain, Flask communication bridge, and emulator settings are 100% healthy, saving you from complex environmental debugging later.
+* **Bypassing the "Blank Page" Syndrome:** Starting with a skeleton of a window, a bevel button control, and active Event/Update loops allows you to immediately begin implementing your specific features, rather than typing boilerplate system calls from memory.
+
+---
+
 ## Setup & Installation
 
 ### A. Building the Client (Host macOS)
