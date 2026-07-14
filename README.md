@@ -149,6 +149,25 @@ Oh, and why "AltanAI"? Because in the early days of development, every single qu
 
 This project is open-source and licensed under the [GNU General Public License v3 (GPL-3.0)](file:///Users/altan/Documents/public-coder/LICENSE). All contributions, modifications, and derivative work delivered from this repository must also be open source under the same license terms.
 
+---
+
+## Security Considerations
+
+> [!WARNING]
+> Running AltanAI with the default configuration poses several security risks if exposed to untrusted networks. Here is why the current settings are insecure:
+>
+> 1. **Plaintext Network Traffic (HTTP):**
+>    Classic Mac OS 9 and its Open Transport TCP/IP subsystem do not natively support modern TLS (HTTPS) protocols. Because the AltanAI client communicates with the Docker bridge over unencrypted HTTP (port `8080`), all network traffic—including the Basic Authentication credentials (`BRIDGE_USER` and `BRIDGE_PASS`), prompt messages, and full source code files—is transmitted in **plaintext**. Anyone capturing packets on the network path can easily intercept this information.
+> 2. **Plaintext API Keys:**
+>    The `PROVIDER_API_KEY` for your LLM provider is stored in plaintext within the local `docker/.env` file. Ensure this file is never committed to version control or made publicly accessible.
+> 3. **MitM & Remote Command Execution Risks:**
+>    Because requests are neither encrypted nor cryptographically signed, a Man-in-the-Middle (MitM) attacker could intercept the connection to inject malicious files, override compilation commands, or spoof bridge responses. This could lead to unauthorized workspace manipulation or code injection inside the Docker container.
+>
+> ### Recommended Actions
+> * **Run Locally Only:** Run both the emulator and the Docker bridge on the same physical machine, binding the bridge listener to `localhost` (`127.0.0.1`) rather than public or local area network interfaces.
+> * **Use Encrypted Tunnels:** If the bridge must be accessed remotely, tunnel the traffic through an encrypted connection such as SSH port forwarding, a secure VPN, or a local reverse proxy with SSL/TLS termination.
+
+
 
 
 
